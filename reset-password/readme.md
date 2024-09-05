@@ -23,33 +23,36 @@ The code provided includes custom validation, email notifications, and password 
 
 3. **Filter Configuration**
 
-   Customize the form and field IDs as necessary by defining filters in your theme's `functions.php`. The sample filter definitions included in the code allow you to specify which forms and fields the validation applies to.
+   Customize the form and field IDs as necessary by defining filters in your theme's `functions.php`. The sample filter definitions included in the code allow you to specify which forms and fields the validation applies to. These are the sample configurations you can programatically customize the behaviour and content of the workflow
 
    ```php
-   add_filter('gform_forgot_password_field_validation_field_ids', function( $value ){
-       return [ '1_1' ];
-   });
 
-   add_filter('gform_forgot_password_notification_form_ids', function( $value ){
-       return [ 1 ];
-   });
-
-   add_filter('gform_reset_password_validation_form_ids', function( $value ){
-       return [ 1 ];
-   });
-
-   add_filter('gform_reset_password_after_submission_form_ids', function( $value ){
-       return [ 1 ];
-   });
-
-   // Define field IDs for the Reset Password form
-   add_filter('gform_reset_password_fields_ids', function( $value ){
-       return [
-           'user_key' => 1,
-           'user_login' => 2,
-           'user_password' => 3,
-       ];
-   });
+    add_filter('gform_forgot_password_field_validation_field_ids', function( $value ){
+    	return [ '1_1' ];
+    });
+    
+    add_filter('gform_forgot_password_notification_form_ids', function( $value ){
+    	return [ 1 ];
+    });
+    
+    add_filter('gform_reset_password_validation_form_ids', function( $value ){
+    	return [ 1 ];
+    });
+    
+    add_filter('gform_reset_password_after_submission_form_ids', function( $value ){
+    	return [ 1 ];
+    });
+    
+    add_filter('gform_reset_password_after_submission_should_auto_login', '__return_true');
+    
+    // define the field ids from the `reset password` form
+    add_filter('gform_reset_password_fields_ids', function( $value ){
+    	return [
+    		'user_key' => 1,
+    		'user_login' => 2,
+    		'user_password' => 3,
+    	];
+    });
    ```
 
 4. **Modify Notifications**
